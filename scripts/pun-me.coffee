@@ -10,7 +10,7 @@
 # Commands:
 #   hubot pun me - Receive a pun
 
-_ = require('lodash')
+he = require('he')
 
 module.exports = (robot) ->
   robot.respond /pun me/, (msg) ->
@@ -21,4 +21,4 @@ module.exports = (robot) ->
       .get() (err, response, body) ->
         regexp = /^document\.write\('&quot;(.*)&quot;<br \/>'\)/
         match = body.match regexp
-        msg.send _.unescape match[1]
+        msg.send he.decode match[1]
